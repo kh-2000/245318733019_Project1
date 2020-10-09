@@ -23,29 +23,29 @@ MongoClient.connect(url,(err,client) =>{
 });
 
 //GET
-app.get('/hospital',middleware.checkToken, (req,res) => {
+app.get('/hosp',middleware.checkToken, (req,res) => {
     console.log("Fetching data from hospital collection.....");
     var data = db.collection("Hospital").find().toArray().then(result => res.json(result));
 });
-app.get('/ventilator', middleware.checkToken, (req,res) => {
+app.get('/vent', middleware.checkToken, (req,res) => {
     console.log("Fetching data from ventilator collection.....");
     var data = db.collection("Ventilator").find().toArray().then(result => res.json(result));
 });
 
 //SEARCH
-app.post('/ventilatorstatus',middleware.checkToken,(req,res) =>{
+app.post('/ventsearch',middleware.checkToken,(req,res) =>{
     var status = req.body.status;
     var data = db.collection("Ventilator").find({"status":status}).toArray().then(result=>res.json(result));
     console.log(status);
 });
-app.post('/hospitalname',middleware.checkToken,(req,res) =>{
+app.post('/hospsearch',middleware.checkToken,(req,res) =>{
     var name = req.body.name;
     var data = db.collection("Hospital").find({"name":new RegExp(name, 'i')}).toArray().then(result=>res.json(result));
     console.log(name);
 });
 
 //CREATE
-app.post('/addventilator',middleware.checkToken, (req, res) => {
+app.post('/addvent',middleware.checkToken, (req, res) => {
     var hId = req.body.hId;
     var ventilatorId = req.body.ventilatorId;
     var status = req.body.status;
@@ -58,7 +58,7 @@ app.post('/addventilator',middleware.checkToken, (req, res) => {
 
     });
 });
-app.post('/addhospital',middleware.checkToken, (req, res) => {
+app.post('/addhosp',middleware.checkToken, (req, res) => {
     var hId = req.body.hId;
     var name = req.body.name;
     var address = req.body.address;
@@ -73,7 +73,7 @@ app.post('/addhospital',middleware.checkToken, (req, res) => {
 });
 
 //UPDATE
-app.put('/updateventilator',middleware.checkToken, (req, res) => {
+app.put('/updatevent',middleware.checkToken, (req, res) => {
     var ventilatorId = req.body.ventilatorId;
     console.log(ventilatorId);
     var status = req.body.status;
@@ -84,7 +84,7 @@ app.put('/updateventilator',middleware.checkToken, (req, res) => {
 
     });
 });
-app.put('/updatehospital',middleware.checkToken, (req, res) => {
+app.put('/updatehosp',middleware.checkToken, (req, res) => {
     var hId = req.body.hId;
     console.log(hId);
     var name = req.body.name;
@@ -98,7 +98,7 @@ app.put('/updatehospital',middleware.checkToken, (req, res) => {
 
 
 //DELETE
-app.delete('/deleteventilator',middleware.checkToken, (req, res) => {
+app.delete('/deletevent',middleware.checkToken, (req, res) => {
     var ventilatorId = req.body.ventilatorId;
     console.log(ventilatorId);
     var data = db.collection("Ventilator").deleteOne({ "ventilatorId": ventilatorId }, (err, obj) => {
@@ -107,7 +107,7 @@ app.delete('/deleteventilator',middleware.checkToken, (req, res) => {
 
     });
 });
-app.delete('/deletehospital', middleware.checkToken, (req, res) => {
+app.delete('/deletehosp', middleware.checkToken, (req, res) => {
     var hId = req.body.hId;
     console.log(hId);
     var data = db.collection("Hospital").deleteOne({ "hId": hId }, (err, obj) => {
@@ -118,4 +118,4 @@ app.delete('/deletehospital', middleware.checkToken, (req, res) => {
 });
 
 
-app.listen(2000);
+app.listen(3000);
