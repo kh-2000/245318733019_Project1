@@ -8,3 +8,4 @@ This is Micro Project where **CRUD** operations are executed on ```Hospital Mana
 ### PREREQUISITES
 * Installation of Node.js and MongoDB
 * Importing the Express server
+* Executing using Postman API
