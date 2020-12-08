@@ -21,7 +21,7 @@ This is Micro Project where **CRUD** operations are executed on _Ventilators' st
 4. config.js
   * It has a secret key
 
-### GO AHEAD TO TEST THE REST API
+### GO AHEAD TO TEST THE REST-API
 * Run the index.js in that folder destination in **cmd** where you have cloned these files using ```node index.js```
 * Open the postman
 * In server.js, I kept default username and password. Give those credentials to the body part of postman
